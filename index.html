@@ -3,36 +3,76 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Midnight Connection - Animated CTA</title>
+<title>Midnight Connection - Optimized</title>
 <style>
-body { margin:0; font-family: Arial, sans-serif; background:#0f0f14; color:#fff; overflow-x:hidden; }
-header { background:#1c1c24; padding:15px 20px; display:flex; justify-content:space-between; align-items:center; position:sticky; top:0; z-index:999; }
-header h1 { font-size:18px; margin:0; font-weight:bold; }
-nav a { color:#fff; text-decoration:none; margin-left:15px; font-size:14px; font-weight:bold; }
-.hero { padding:40px 20px; background:linear-gradient(180deg,#1c1c24 0%,#0f0f14 100%); display:flex; flex-direction:column; align-items:center; overflow:hidden; }
+body { margin:0; font-family: Georgia, serif; background: radial-gradient(circle at top, #1a1a1a 0%, #000 60%); color:#f5f5f5; overflow-x:hidden; }
+header { background:#1c1c24; padding:15px 20px; display:flex; justify-content:space-between; align-items:center; position:sticky; top:50px; z-index:999; }
+header h1 { font-size:18px; margin:0; font-weight:bold; display:flex; align-items:center; gap:8px; }
+.flag { width:22px; height:auto; }
+nav a { color:#fff; text-decoration:none; margin-left:15px; font-size:14px; font-weight:bold; cursor:pointer; }
+.hero { padding:40px 20px; display:flex; flex-direction:column; align-items:center; overflow:hidden; }
 .hero-container { display:flex; flex-direction:column; align-items:center; gap:20px; max-width:900px; }
 .hero img { width:200px; max-width:40%; border-radius:12px; box-shadow:0 4px 20px rgba(255,51,102,0.5); animation: float 6s ease-in-out infinite; }
 @keyframes float { 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-15px); } }
 .hero-text { max-width:600px; text-align:center; }
 .hero h2 { font-size:28px; margin-bottom:15px; color:#ff3366; }
 .hero p { font-size:17px; line-height:1.6; margin-bottom:12px; }
-.cta-button { display:inline-block; padding:18px 36px; background:#ff3366; color:#fff; text-decoration:none; border-radius:40px; font-weight:bold; font-size:20px; margin-top:15px; transition: transform 0.3s, background 0.3s; animation: pulse 2s infinite; }
-.cta-button:hover { transform: scale(1.1); background:#ff6699; }
-@keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+.cta-button { display:inline-block; padding:18px 36px; background:linear-gradient(45deg, #ff005a, #ff2e7a); color:#fff; text-decoration:none; border-radius:40px; font-weight:bold; font-size:20px; margin-top:15px; box-shadow:0 0 25px rgba(255,0,90,0.6); animation: pulseGlow 2s infinite; transition: transform 0.2s ease; }
+.cta-button:hover { transform: scale(1.05); }
+@keyframes pulseGlow { 0% { box-shadow:0 0 15px rgba(255,0,90,0.4); } 50% { box-shadow:0 0 35px rgba(255,0,90,0.9); } 100% { box-shadow:0 0 15px rgba(255,0,90,0.4); } }
 .banner-box { text-align:center; margin:30px 0; }
 .banner-box img { max-width:320px; width:100%; display:block; margin:0 auto; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.4); }
 .content { padding:40px 20px; max-width:800px; margin:auto; line-height:2; font-size:18px; }
-.sticky-cta { position:fixed; bottom:15px; left:50%; transform:translateX(-50%); z-index:999; }
+.sticky-cta { position:fixed; bottom:20px; right:20px; z-index:9998; }
+#videoChatSection, #story2Section { display:none; padding:40px 20px; max-width:800px; margin:auto; }
+#stickyBar { display:none; position:fixed; top:0; left:0; width:100%; background:linear-gradient(90deg,#ff005a,#ff2e7a); color:#fff; text-align:center; padding:10px 0; font-weight:bold; font-size:14px; z-index:10001; box-shadow:0 2px 15px rgba(0,0,0,0.4); cursor:pointer; }
+@keyframes slideDown { from { transform:translateY(-100%); } to { transform:translateY(0); } }
 @media(min-width:768px){ .hero-container { flex-direction:row; align-items:center; justify-content:center; } .hero-text { text-align:left; } .hero img { width:280px; } .hero h2 { font-size:36px; } }
 </style>
+<script>
+function showVideoChat() { hideSections(); document.getElementById('videoChatSection').style.display='block'; window.scrollTo({top:document.getElementById('videoChatSection').offsetTop-60, behavior:'smooth'}); }
+function showStory2() { hideSections(); document.getElementById('story2Section').style.display='block'; window.scrollTo({top:document.getElementById('story2Section').offsetTop-60, behavior:'smooth'}); }
+function hideSections() { document.getElementById('videoChatSection').style.display='none'; document.getElementById('story2Section').style.display='none'; }
+
+// Sticky Bar timer
+window.addEventListener('load', function(){
+  setTimeout(function(){
+    let bar = document.getElementById('stickyBar');
+    bar.style.display='block';
+    bar.style.animation='slideDown 0.6s ease';
+  }, 5000);
+});
+
+// Make sticky bar clickable
+document.addEventListener('DOMContentLoaded', function(){
+  let stickyBar = document.getElementById('stickyBar');
+  stickyBar.addEventListener('click', function(){
+    window.open('https://ctwmsg.com/?siteId=jasmin&cobrandId=&superCategoryName=&categoryName=girl&pageName=listpage&prm[psid]=kedd18&prm[pstool]=201_1&prm[psprogram]=revs&prm[campaign_id]=&subAffId=', '_blank');
+  });
+
+  // Dynamic online number
+  let baseNumber = 2184;
+  let stickyText = stickyBar.innerHTML;
+  setInterval(function(){
+    let fluctuation = Math.floor(Math.random() * 201) - 100; // ±100
+    let current = Math.max(1800, Math.min(3000, baseNumber + fluctuation));
+    stickyBar.innerHTML = `🔥 ${current.toLocaleString()} members online right now — Don’t miss your chance tonight`;
+  }, 5000);
+});
+</script>
 </head>
 <body>
+
+<!-- Sticky Top Notification Bar -->
+<div id="stickyBar">🔥 2,184 members online right now — Don’t miss your chance tonight</div>
+
 <header>
-<h1>Midnight Stories</h1>
+<h1><img class="flag" src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" alt="USA Flag"> Midnight Stories</h1>
 <nav>
-<a href="#home">Home</a>
-<a href="#stories">Stories</a>
-<a href="#contact">Contact</a>
+<a href="#home" onclick="hideSections()">Home</a>
+<a href="#stories" onclick="hideSections()">Stories</a>
+<a onclick="showVideoChat()">Live Video Chat</a>
+<a onclick="showStory2()">Another Romantic Story</a>
 </nav>
 </header>
 
@@ -41,57 +81,36 @@ nav a { color:#fff; text-decoration:none; margin-left:15px; font-size:14px; font
 <img src="https://i.postimg.cc/1gQJRb60/your-image.jpg" alt="Romantic night">
 <div class="hero-text">
 <h2>Midnight Connection</h2>
-<p>The beach was almost empty at that late hour. Moonlight spilled over the water, turning the ocean into shifting silver. Elena walked alone along the shoreline, barefoot, her thoughts heavier than the night itself.</p>
-<p>She had needed distance. From the lab. From the tension. From the confusion that had been growing inside her for weeks.</p>
-<p>She never believed in online connections. But loneliness has a quiet way of changing rules. A notification appeared: "Hey… are you awake?"</p>
+<p>The beach was almost empty at that late hour. Moonlight spilled over the water, turning the ocean into shifting silver.</p>
 <a href="https://www.livesexchatnicegirls.lsl.com" target="_blank" rel="noopener noreferrer" class="cta-button">Start Private Chat Now</a>
 </div>
 </div>
 </section>
 
 <section class="content" id="stories">
-<p>She hesitated before replying. The sound of the waves filled the silence between heartbeats. The stranger’s messages were simple, warm, unexpectedly genuine.</p>
-<p>What started as a harmless exchange slowly became something more. Shared secrets. Laughter. A spark that felt real. She realized she wasn’t alone anymore.</p>
-<p>Sometimes connection doesn’t begin with a touch — it begins with a message. That night changed everything. Not because she found love instantly, but because she opened the door to possibility.</p>
-
-<!-- 🔥 BANNER 1 -->
 <div class="banner-box">
-<a title="Live webcam sex! More than 20000 Hot Girls are waiting for you!" href="https://ctwmsg.com/?siteId=jasmin&cobrandId=&superCategoryName=&categoryName=girl&pageName=listpage&prm[psid]=kedd18&prm[pstool]=201_2&prm[psprogram]=revs&prm[campaign_id]=&subAffId=" target="_blank" rel="noopener noreferrer" align="center">
-<img class="img" alt="Live webcam sex! More than 20000 Hot Girls are waiting for you!" src="https://pt-static1.ptwmstcnt.com/npt/banner/s1_girl/300x250.jpg?sid=963d74cc&psid=kedd18&pstool=201_2&psprogram=revs&campaign_id=" border="0" />
-</a>
+<a title="Live webcam sex!" href="https://ctwmsg.com/?siteId=jasmin&categoryName=girl&pageName=listpage&prm[psid]=kedd18&prm[pstool]=201_2&prm[psprogram]=revs" target="_blank"><img src="https://pt-static1.ptwmstcnt.com/npt/banner/s1_girl/300x250.jpg" /></a>
 </div>
-
-<!-- 🔥 BANNER 2 -->
 <div class="banner-box">
-<a title="Live Hot Flirts for You!" href="https://ctwmsg.com/?siteId=jasmin&cobrandId=&superCategoryName=&categoryName=hot_flirt&pageName=listpage&prm[psid]=kedd18&prm[pstool]=201_3&prm[psprogram]=revs&prm[campaign_id]=&subAffId=" target="_blank" rel="noopener noreferrer" align="center">
-<img class="img" alt="Live Hot Flirts for You!" src="https://pt-static1.ptwmstcnt.com/npt/banner/s1_hotflirt/300x250.jpg?sid=963d74cc&psid=kedd18&pstool=201_3&psprogram=revs&campaign_id=" border="0" />
-</a>
+<a title="Live Hot Flirts" href="https://ctwmsg.com/?siteId=jasmin&categoryName=hot_flirt&pageName=listpage&prm[psid]=kedd18&prm[pstool]=201_3&prm[psprogram]=revs" target="_blank"><img src="https://pt-static1.ptwmstcnt.com/npt/banner/s1_hotflirt/300x250.jpg" /></a>
 </div>
+</section>
 
-<!-- 🔥 BANNER 3 -->
+<section id="videoChatSection">
+<h2>Live Video Chat</h2>
+<div data-awe-container-id="object_container" style="display:inline-block;width:300px;height:250px;"></div>
+<script src="https://ecdwm.com/embed/vb?c=object_container&categoryName=girl&pageName=listpage&color=black_yellow&psid=kedd18&pstool=316_2&siteId=jasmin&psprogram=revs&ms_notrack=1"></script>
+</section>
+
+<section id="story2Section">
+<h2>Midnight Messages</h2>
+<p>...story content...</p>
 <div class="banner-box">
-<a title="Mature Women are waiting for You!" href="https://ctwmsg.com/?siteId=jasmin&cobrandId=&superCategoryName=&categoryName=mature&pageName=listpage&prm[psid]=kedd18&prm[pstool]=201_28&prm[psprogram]=revs&prm[campaign_id]=&subAffId=" target="_blank" rel="noopener noreferrer" align="center">
-<img class="img" alt="Mature Women are waiting for You!" src="https://pt-static1.ptwmstcnt.com/npt/banner/s1_mature_4/300x250.jpg?sid=963d74cc&psid=kedd18&pstool=201_28&psprogram=revs&campaign_id=" border="0" />
-</a>
+<a title="There’s a reason 35M members choose us!" href="https://ctwmsg.com/?siteId=jasmin&cobrandId=&superCategoryName=&categoryName=girl&pageName=listpage&prm[psid]=kedd18&prm[pstool]=201_1&prm[psprogram]=revs&prm[campaign_id]=&subAffId=" target="_blank"><img src="https://pt-static1.ptwmstcnt.com/npt/banner/s1_promo/300x250.jpg" /></a>
 </div>
+</section>
 
-<!-- CTA 1 -->
-<div style="text-align:center; margin-top:30px;">
-<a href="https://www.livesexchatnicegirls.lsl.com" target="_blank" rel="noopener noreferrer" class="cta-button">Meet Real US Singles Now</a>
-</div>
+<div class="sticky-cta"><a href="https://www.livesexchatnicegirls.lsl.com" target="_blank" class="cta-button">Start Chat Now</a></div>
 
-<!-- CTA 2 -->
-<div style="text-align:center; margin-top:20px;">
-<a href="https://www.livesexchatnicegirls.lsl.com" target="_blank" rel="noopener noreferrer" class="cta-button">Start Hot Private Chat</a>
-</div>
-
-<!-- Sticky CTA for mobile -->
-<div class="sticky-cta">
-<a href="https://www.livesexchatnicegirls.lsl.com" target="_blank" rel="noopener noreferrer" class="cta-button">Start Chat Now</a>
-</div>
-
-<footer id="contact">
-© 2026 Midnight Stories | 18+ Only | Privacy Policy
-</footer>
 </body>
 </html>
