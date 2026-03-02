@@ -10,7 +10,7 @@ header { background:#1c1c24; padding:15px 20px; display:flex; justify-content:sp
 header h1 { font-size:18px; margin:0; font-weight:bold; display:flex; align-items:center; gap:8px; }
 .flag { width:22px; height:auto; }
 nav a { color:#fff; text-decoration:none; margin-left:15px; font-size:14px; font-weight:bold; cursor:pointer; }
-.hero { padding:40px 20px; display:flex; flex-direction:column; align-items:center; overflow:hidden; }
+.hero { padding:40px 20px; display:flex; flex-direction:column; align-items:center; }
 .hero-container { display:flex; flex-direction:column; align-items:center; gap:20px; max-width:900px; }
 .hero img { width:200px; max-width:40%; border-radius:12px; box-shadow:0 4px 20px rgba(255,51,102,0.5); animation: float 6s ease-in-out infinite; }
 @keyframes float { 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-15px); } }
@@ -22,15 +22,16 @@ nav a { color:#fff; text-decoration:none; margin-left:15px; font-size:14px; font
 @keyframes pulseGlow { 0% { box-shadow:0 0 15px rgba(255,0,90,0.4); } 50% { box-shadow:0 0 35px rgba(255,0,90,0.9); } 100% { box-shadow:0 0 15px rgba(255,0,90,0.4); } }
 .banner-box { text-align:center; margin:30px 0; }
 .banner-box img { max-width:320px; width:100%; display:block; margin:0 auto; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.4); }
-.content { padding:40px 20px; max-width:800px; margin:auto; line-height:2; font-size:18px; white-space: pre-line; overflow-wrap:break-word; }
+.content, #story1Section, #story2Section { padding:40px 20px; max-width:800px; margin:auto; line-height:2; font-size:18px; white-space: pre-line; overflow-wrap:break-word; }
 .sticky-cta { position:fixed; bottom:20px; right:20px; z-index:9998; }
-#videoChatSection, #story2Section, #story1Section { display:none; padding:40px 20px; max-width:800px; margin:auto; white-space: pre-line; overflow-wrap:break-word; }
+#videoChatSection { display:none; padding:40px 20px; max-width:800px; margin:auto; }
+#story1Section, #story2Section { display:none; }
 #stickyBar { display:none; position:fixed; top:0; left:0; width:100%; background:linear-gradient(90deg,#ff005a,#ff2e7a); color:#fff; text-align:center; padding:10px 0; font-weight:bold; font-size:14px; z-index:10001; box-shadow:0 2px 15px rgba(0,0,0,0.4); cursor:pointer; }
 @keyframes slideDown { from { transform:translateY(-100%); } to { transform:translateY(0); } }
 @media(max-width:768px){
   body { font-size:16px; line-height:1.8; }
   .hero h2 { font-size:28px; }
-  .hero-text p, .content p { font-size:16px; line-height:1.8; }
+  .hero-text p { font-size:16px; }
   .cta-button { font-size:18px; padding:14px 28px; }
   nav a { font-size:13px; margin-left:10px; }
 }
@@ -38,29 +39,15 @@ nav a { color:#fff; text-decoration:none; margin-left:15px; font-size:14px; font
 </style>
 <script>
 function showVideoChat() { hideSections(); document.getElementById('videoChatSection').style.display='block'; window.scrollTo({top:document.getElementById('videoChatSection').offsetTop-60, behavior:'smooth'}); }
-function showStory2() { hideSections(); document.getElementById('story2Section').style.display='block'; window.scrollTo({top:document.getElementById('story2Section').offsetTop-20, behavior:'smooth'}); }
 function showStory1() { hideSections(); document.getElementById('story1Section').style.display='block'; window.scrollTo({top:document.getElementById('story1Section').offsetTop-20, behavior:'smooth'}); }
-function hideSections() { document.getElementById('videoChatSection').style.display='none'; document.getElementById('story2Section').style.display='none'; document.getElementById('story1Section').style.display='none'; }
-
-window.addEventListener('load', function(){
-  setTimeout(function(){
-    let bar = document.getElementById('stickyBar');
-    bar.style.display='block';
-    bar.style.animation='slideDown 0.6s ease';
-  }, 5000);
-});
-
+function showStory2() { hideSections(); document.getElementById('story2Section').style.display='block'; window.scrollTo({top:document.getElementById('story2Section').offsetTop-20, behavior:'smooth'}); }
+function hideSections() { document.getElementById('videoChatSection').style.display='none'; document.getElementById('story1Section').style.display='none'; document.getElementById('story2Section').style.display='none'; }
+window.addEventListener('load', function(){ setTimeout(function(){ let bar=document.getElementById('stickyBar'); bar.style.display='block'; bar.style.animation='slideDown 0.6s ease'; },5000);});
 document.addEventListener('DOMContentLoaded', function(){
-  let stickyBar = document.getElementById('stickyBar');
-  stickyBar.addEventListener('click', function(){
-    window.open('https://ctwmsg.com/?siteId=jasmin&categoryName=girl&pageName=listpage&prm[psid]=kedd18&prm[pstool]=201_1&prm[psprogram]=revs', '_blank');
-  });
-  let baseNumber = 2184;
-  setInterval(function(){
-    let fluctuation = Math.floor(Math.random() * 201) - 100;
-    let current = Math.max(1800, Math.min(3000, baseNumber + fluctuation));
-    stickyBar.innerHTML = `🔥 ${current.toLocaleString()} members online right now — Don’t miss your chance tonight`;
-  }, 5000);
+ let stickyBar=document.getElementById('stickyBar');
+ stickyBar.addEventListener('click', function(){ window.open('https://ctwmsg.com/?siteId=jasmin&categoryName=girl&pageName=listpage&prm[psid]=kedd18&prm[pstool]=201_1&prm[psprogram]=revs','_blank');});
+ let baseNumber=2184;
+ setInterval(function(){ let fluctuation=Math.floor(Math.random()*201)-100; let current=Math.max(1800,Math.min(3000,baseNumber+fluctuation)); stickyBar.innerHTML=`🔥 ${current.toLocaleString()} members online right now — Don’t miss your chance tonight`;},5000);
 });
 </script>
 </head>
@@ -86,8 +73,34 @@ document.addEventListener('DOMContentLoaded', function(){
 </div>
 </section>
 <section id="story1Section">
-<h2>Original Story</h2>
-<p>The full original story content goes here. Include all paragraphs, dialogues, and descriptive text exactly as before, fully visible for reading.</p>
+<h2>Where Ocean Meets Code</h2>
+<p>The beach was almost empty at that late hour.
+
+Moonlight spilled over the water, turning the surface of the ocean into shifting silver. The tide moved in a slow, hypnotic rhythm — waves breathing in and out like the world itself was alive.
+
+Elena walked alone along the shoreline, barefoot, her dress brushing softly against her legs. She had needed distance. From the lab. From the tension. From the confusion that had been growing inside her for weeks.
+
+She never expected to meet someone there.
+
+“Couldn’t sleep either?” a voice asked gently behind her.
+
+She turned. Daniel stood a few steps away, hands in his pockets, the wind tugging at his shirt.
+
+They started talking. About work. About dreams. About the strange loneliness of being surrounded by people but still feeling alone.
+
+Minutes turned into an hour. The air between them changed — softer, warmer.
+
+When his fingers brushed hers, it wasn’t accidental.
+
+It was quiet. Intentional.
+
+And when she finally looked up at him, the world felt smaller. Closer.
+
+“Maybe,” he whispered, “some connections aren’t meant to stay online.”
+
+The ocean kept breathing. The night wrapped around them.
+
+And neither of them stepped away.</p>
 </section>
 <section id="story2Section">
 <h2>Midnight Messages</h2>
@@ -96,20 +109,40 @@ document.addEventListener('DOMContentLoaded', function(){
 Her: “Are you awake?”
 
 He smiled instantly.
+
 Him: “For you? Always.”
 
-... (full story text continues here exactly as before) ...
-</p>
+They had never met in person. Just messages. Late-night confessions. Shared secrets typed in the dark.
+
+Her laugh came through voice notes. Soft. Addictive.
+
+“Tell me something real,” she sent.
+
+He paused, then typed: “I think about what it would feel like to finally see you. Not on a screen. But right in front of me.”
+
+A long pause.
+
+Then: “Maybe sooner than you think.”
+
+His heart raced.
+
+Sometimes desire doesn’t need touch. Sometimes it grows in words. In anticipation. In the quiet space between two messages.
+
+And sometimes… that space is the most powerful place of all.</p>
 <div class="banner-box">
-<a title="There’s a reason 35M members choose us!" href="https://ctwmsg.com/?siteId=jasmin&categoryName=girl&pageName=listpage&prm[psid]=kedd18&prm[pstool]=201_1&prm[psprogram]=revs" target="_blank"><img src="https://pt-static1.ptwmstcnt.com/npt/banner/s1_promo/300x250.jpg" /></a>
+<a href="https://ctwmsg.com/?siteId=jasmin&categoryName=girl&pageName=listpage&prm[psid]=kedd18&prm[pstool]=201_1&prm[psprogram]=revs" target="_blank"><img src="https://pt-static1.ptwmstcnt.com/npt/banner/s1_promo/300x250.jpg" /></a>
 </div>
 </section>
-<section class="content" id="stories">
+<section id="videoChatSection">
+<div data-awe-container-id="object_container" style="display:inline-block;width:300px;height:250px;"></div>
+<script src="https://ecdwm.com/embed/vb?c=object_container&categoryName=girl&pageName=listpage&color=black_yellow&psid=kedd18&pstool=316_2&siteId=jasmin&cobrandId=&psprogram=revs&campaign_id=&ms_notrack=1&subAffId="></script>
+</section>
+<section class="content">
 <div class="banner-box">
-<a title="Live webcam sex!" href="https://ctwmsg.com/?siteId=jasmin&categoryName=girl&pageName=listpage&prm[psid]=kedd18&prm[pstool]=201_2&prm[psprogram]=revs" target="_blank"><img src="https://pt-static1.ptwmstcnt.com/npt/banner/s1_girl/300x250.jpg" /></a>
+<a href="https://ctwmsg.com/?siteId=jasmin&categoryName=girl&pageName=listpage&prm[psid]=kedd18&prm[pstool]=201_2&prm[psprogram]=revs" target="_blank"><img src="https://pt-static1.ptwmstcnt.com/npt/banner/s1_girl/300x250.jpg" /></a>
 </div>
 <div class="banner-box">
-<a title="Live Hot Flirts" href="https://ctwmsg.com/?siteId=jasmin&categoryName=hot_flirt&pageName=listpage&prm[psid]=kedd18&prm[pstool]=201_3&prm[psprogram]=revs" target="_blank"><img src="https://pt-static1.ptwmstcnt.com/npt/banner/s1_hotflirt/300x250.jpg" /></a>
+<a href="https://ctwmsg.com/?siteId=jasmin&categoryName=hot_flirt&pageName=listpage&prm[psid]=kedd18&prm[pstool]=201_3&prm[psprogram]=revs" target="_blank"><img src="https://pt-static1.ptwmstcnt.com/npt/banner/s1_hotflirt/300x250.jpg" /></a>
 </div>
 </section>
 <div class="sticky-cta"><a href="https://www.livesexchatnicegirls.lsl.com" target="_blank" class="cta-button">Start Chat Now</a></div>
