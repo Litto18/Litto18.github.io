@@ -3,230 +3,122 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Midnight Connection - Full Stories</title>
+<title>Lonely Tonight?</title>
+
 <style>
-body { margin:0; font-family: Georgia, serif; background: radial-gradient(circle at top, #1a1a1a 0%, #000 60%); color:#f5f5f5; overflow-x:hidden; }
-header { background:#1c1c24; padding:15px 20px; display:flex; justify-content:space-between; align-items:center; position:sticky; top:50px; z-index:999; }
-header h1 { font-size:18px; margin:0; font-weight:bold; display:flex; align-items:center; gap:8px; }
-.flag { width:22px; height:auto; }
-nav a { color:#fff; text-decoration:none; margin-left:15px; font-size:14px; font-weight:bold; cursor:pointer; }
-.hero { padding:60px 20px 40px 20px; display:flex; flex-direction:column; align-items:center; }
-.hero-container { display:flex; flex-direction:column; align-items:center; gap:25px; max-width:900px; }
-.hero img { width:220px; max-width:40%; border-radius:12px; box-shadow:0 4px 20px rgba(255,51,102,0.5); animation: float 6s ease-in-out infinite; }
-@keyframes float { 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-15px); } }
-.hero-text { max-width:700px; text-align:center; line-height:2; font-size:18px; }
-.hero h2 { font-size:32px; margin-bottom:20px; color:#ff3366; }
-.cta-button { display:inline-block; padding:18px 36px; background:linear-gradient(45deg, #ff005a, #ff2e7a); color:#fff; text-decoration:none; border-radius:40px; font-weight:bold; font-size:20px; margin-top:25px; box-shadow:0 0 25px rgba(255,0,90,0.6); animation: pulseGlow 2s infinite; transition: transform 0.2s ease; }
-.cta-button:hover { transform: scale(1.05); }
-@keyframes pulseGlow { 0% { box-shadow:0 0 15px rgba(255,0,90,0.4); } 50% { box-shadow:0 0 35px rgba(255,0,90,0.9); } 100% { box-shadow:0 0 15px rgba(255,0,90,0.4); } }
-.banner-box { text-align:center; margin:30px 0; }
-.banner-box img { max-width:320px; width:100%; display:block; margin:0 auto; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.4); }
-.content, #story1Section, #story2Section { padding:40px 20px; max-width:800px; margin:auto; line-height:2; font-size:18px; white-space: pre-line; overflow-wrap:break-word; }
-.sticky-cta { position:fixed; bottom:20px; right:20px; z-index:9998; }
-#videoChatSection { display:none; padding:40px 20px; max-width:800px; margin:auto; }
-#story1Section, #story2Section { display:none; }
-#stickyBar { display:none; position:fixed; top:0; left:0; width:100%; background:linear-gradient(90deg,#ff005a,#ff2e7a); color:#fff; text-align:center; padding:10px 0; font-weight:bold; font-size:14px; z-index:10001; box-shadow:0 2px 15px rgba(0,0,0,0.4); cursor:pointer; }
-@keyframes slideDown { from { transform:translateY(-100%); } to { transform:translateY(0); } }
-@media(max-width:768px){
-  body { font-size:16px; }
-  .hero h2 { font-size:26px; }
-  .hero-text { font-size:16px; }
-  .cta-button { font-size:18px; padding:14px 28px; }
-  nav a { font-size:13px; margin-left:10px; }
+body {
+  margin:0;
+  font-family: Arial, sans-serif;
+  background: radial-gradient(circle at top, #1a1a1a 0%, #000 70%);
+  color:#fff;
+  text-align:center;
 }
-@media(min-width:768px){ .hero-container { flex-direction:row; align-items:flex-start; justify-content:center; } .hero-text { text-align:left; } .hero img { width:280px; } }
+
+.container {
+  padding:40px 20px;
+  max-width:500px;
+  margin:auto;
+}
+
+img {
+  width:100%;
+  border-radius:12px;
+  box-shadow:0 0 25px rgba(255,0,90,0.6);
+  margin-bottom:25px;
+}
+
+h1 {
+  font-size:28px;
+  color:#ff3366;
+  margin-bottom:15px;
+}
+
+p {
+  font-size:18px;
+  line-height:1.6;
+  margin-bottom:25px;
+}
+
+.cta {
+  display:inline-block;
+  padding:18px 30px;
+  font-size:20px;
+  font-weight:bold;
+  color:#fff;
+  text-decoration:none;
+  border-radius:40px;
+  background:linear-gradient(45deg,#ff005a,#ff2e7a);
+  box-shadow:0 0 30px rgba(255,0,90,0.7);
+  animation:pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow:0 0 10px rgba(255,0,90,0.4); }
+  50% { box-shadow:0 0 35px rgba(255,0,90,0.9); }
+  100% { box-shadow:0 0 10px rgba(255,0,90,0.4); }
+}
+
+.sticky {
+  position:fixed;
+  bottom:20px;
+  width:100%;
+  left:0;
+}
+
+.topbar {
+  position:fixed;
+  top:0;
+  width:100%;
+  background:linear-gradient(90deg,#ff005a,#ff2e7a);
+  padding:10px;
+  font-weight:bold;
+  font-size:14px;
+}
 </style>
-<script>
-function showVideoChat() { hideSections(); document.getElementById('videoChatSection').style.display='block'; window.scrollTo({top:document.getElementById('videoChatSection').offsetTop-60, behavior:'smooth'}); }
-function showStory1() { hideSections(); document.getElementById('story1Section').style.display='block'; window.scrollTo({top:document.getElementById('story1Section').offsetTop-20, behavior:'smooth'}); }
-function showStory2() { hideSections(); document.getElementById('story2Section').style.display='block'; window.scrollTo({top:document.getElementById('story2Section').offsetTop-20, behavior:'smooth'}); }
-function hideSections() { document.getElementById('videoChatSection').style.display='none'; document.getElementById('story1Section').style.display='none'; document.getElementById('story2Section').style.display='none'; }
-window.addEventListener('load', function(){ setTimeout(function(){ let bar=document.getElementById('stickyBar'); bar.style.display='block'; bar.style.animation='slideDown 0.6s ease'; },5000);});
-document.addEventListener('DOMContentLoaded', function(){
- let stickyBar=document.getElementById('stickyBar');
- stickyBar.addEventListener('click', function(){ window.open('https://ctwmsg.com/?siteId=jasmin&categoryName=girl&pageName=listpage&prm[psid]=kedd18&prm[pstool]=201_1&prm[psprogram]=revs','_blank');});
- let baseNumber=2184;
- setInterval(function(){ let fluctuation=Math.floor(Math.random()*201)-100; let current=Math.max(1800,Math.min(3000,baseNumber+fluctuation)); stickyBar.innerHTML=`🔥 ${current.toLocaleString()} members online right now — Don’t miss your chance tonight`;},5000);
-});
-</script>
 </head>
+
 <body>
-<div id="stickyBar">🔥 2,184 members online right now — Don’t miss your chance tonight</div>
-<header>
-<h1><img class="flag" src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" alt="USA Flag"> Midnight Stories</h1>
-<nav>
-<a href="#home" onclick="hideSections()">Home</a>
-<a onclick="showStory1()">Original Story</a>
-<a onclick="showStory2()">Another Romantic Story</a>
-<a onclick="showVideoChat()">Live Video Chat</a>
-</nav>
-</header>
-<section class="hero" id="home">
-<div class="hero-container">
-<img src="https://i.postimg.cc/1gQJRb60/your-image.jpg" alt="Romantic night">
-<div class="hero-text">
-<h2>Whispers After Midnight</h2>
 
-Ethan never believed in fate. He believed in timing, in logic, in things that could be measured.
-
-Until the night she appeared online.
-
-Her username was simple. Her first message even simpler: “Can’t sleep either?”
-
-What started as a casual reply turned into hours of conversation. Music preferences. Childhood memories. Confessions shared only in darkness.
-
-He told her about the city lights outside his window. She described the rain tapping softly against her glass.
-
-Somewhere between 1:00 AM and 3:00 AM, something shifted.
-
-It wasn’t just attraction.
-It was recognition.
-
-“Do you ever feel,” she typed slowly, “like you’ve been waiting for someone you’ve never met?”
-
-His fingers hovered over the keyboard before he answered.
-
-“Yes. I think I just found her.”
-
-The world outside was quiet. But inside that glowing screen, something electric was building — anticipation, curiosity, desire.
-
-They weren’t rushing. They were savoring. Every word intentional. Every pause meaningful.
-
-And when she finally sent:
-
-“Maybe we shouldn’t just imagine it anymore…”
-
-His heart pounded.
-
-Because sometimes the most powerful connections don’t start with a touch.
-
-They start with a message.
-
-<a href="https://www.livesexchatnicegirls.lsl.com" target="_blank" rel="noopener noreferrer" class="cta-button">Continue The Story Live</a>
-
-</div>
+<div class="topbar" id="topBar">
+🔥 2,184 girls are online now – one of them is waiting for you
 </div>
 
-<div class="banner-box">
-<a href="https://ctwmsg.com/?siteId=jasmin&categoryName=girl&pageName=listpage&prm[psid]=kedd18&prm[pstool]=201_2&prm[psprogram]=revs" target="_blank"><img src="https://pt-static1.ptwmstcnt.com/npt/banner/s1_girl/300x250.jpg" /></a>
-</div>
+<div class="container">
 
-<div class="banner-box">
-<a href="https://ctwmsg.com/?siteId=jasmin&categoryName=hot_flirt&pageName=listpage&prm[psid]=kedd18&prm[pstool]=201_3&prm[psprogram]=revs" target="_blank"><img src="https://pt-static1.ptwmstcnt.com/npt/banner/s1_hotflirt/300x250.jpg" /></a>
-</div>
+<img src="https://i.postimg.cc/1gQJRb60/your-image.jpg" alt="Girl">
 
-</section>
+<h1>I shouldn’t be here… but I feel so lonely tonight</h1>
 
-<section id="story1Section" class="content">
-<h2>Where Ocean Meets Code</h2>
-
-The beach was almost empty at that late hour.
-
-Moonlight spilled over the water, turning the surface of the ocean into shifting silver. The tide moved in a slow, hypnotic rhythm — waves breathing in and out like the world itself was alive.
-
-Elena walked alone along the shoreline, barefoot, her dress brushing softly against her thighs. She had needed distance. From the lab. From the tension. From the confusion that had been growing inside her for weeks.
-
-She didn’t expect anyone else to be there.
-
-But he was.
-
-Liam sat a little farther down the shore, laptop closed beside him, staring at the horizon as if it held answers written between the stars.
-
-They noticed each other at the same moment.
-
-A quiet smile. A hesitant step closer.
-
-"Couldn’t sleep either?" he asked gently.
-
-She laughed softly. "I could ask you the same."
-
-What began as small talk about the ocean turned into something deeper — dreams they had postponed, risks they hadn’t taken, the strange loneliness of ambitious minds.
-
-Hours passed unnoticed.
-
-When a colder breeze swept in, he instinctively stepped closer. Not touching. Just near enough to feel the warmth between them.
-
-"Funny," she whispered, "how you can work with someone for months and never really see them."
-
-His voice lowered. "Maybe we only see clearly in the dark."
-
-The silence that followed wasn’t awkward. It was charged.
-
-And when their hands finally brushed — accidentally, naturally — neither of them pulled away.
-
-Because sometimes connection isn’t written in code.
-
-It’s written in the spaces between heartbeats.
-
+<p>
+If you're reading this… maybe you feel the same.
 <br><br>
-<a href="https://www.livesexchatnicegirls.lsl.com" target="_blank" class="cta-button">Experience Your Own Midnight Connection</a>
-</section>
-
-<section id="story2Section" class="content">
-<h2>Midnight Messages</h2>
-
-The clock on Daniel’s wall blinked 12:17 AM when his phone lit up.
-
-Unknown number.
-
-He almost ignored it.
-
-"Are you still awake?"
-
-No name. No context.
-
-Just four words.
-
-He hesitated — then replied.
-
-"Depends. Who’s asking?"
-
-Three dots appeared instantly.
-
-"Someone who can’t stop thinking about you."
-
-His pulse quickened.
-
-He knew exactly who it was.
-
-They had met only once — a friend’s rooftop party, city lights glowing behind her like a private constellation. They had talked for hours, closer and closer, until the world felt smaller.
-
-But she had left early. No goodbye. No number exchanged.
-
-Until now.
-
-"I wasn’t sure you’d text," he admitted.
-
-"I wasn’t sure you’d want me to," she answered.
-
-Minutes turned into paragraphs. Paragraphs into confessions.
-
-She told him she replayed their almost-kiss in her mind.
-
-He told her he wished he hadn’t let her walk away.
-
-"What would happen," she typed slowly, "if I came over right now?"
-
-The question lingered in the quiet room.
-
-Daniel stood, heart racing.
-
-"I’d open the door," he replied.
-
-Sometimes courage arrives after midnight.
-
-And sometimes the right message changes everything.
-
+I didn’t plan to talk to anyone…
+but I can’t sleep, and I hate being alone like this.
 <br><br>
-<a href="https://www.livesexchatnicegirls.lsl.com" target="_blank" class="cta-button">Start Your Own Midnight Story Now</a>
-</section>
+Maybe we can fix that… just for tonight.
+</p>
 
-<section id="videoChatSection">
-<div data-awe-container-id="object_container" style="display:inline-block;width:300px;height:250px;"></div>
-<script src="https://ecdwm.com/embed/vb?c=object_container&categoryName=girl&pageName=listpage&color=black_yellow&psid=kedd18&pstool=316_2&siteId=jasmin&cobrandId=&psprogram=revs&campaign_id=&ms_notrack=1&subAffId="></script>
-</section>
+<a href="https://www.livesexchatnicegirls.lsl.com" target="_blank" class="cta">
+Start Chatting With Me Now
+</a>
 
-<div class="sticky-cta"><a href="https://www.livesexchatnicegirls.lsl.com" target="_blank" class="cta-button">Start Chat Now</a></div>
+</div>
+
+<div class="sticky">
+<a href="https://www.livesexchatnicegirls.lsl.com" target="_blank" class="cta">
+I’m Waiting For You… Click Here
+</a>
+</div>
+
+<script>
+let base=2184;
+setInterval(()=>{
+ let fluctuation=Math.floor(Math.random()*200)-100;
+ let current=base+fluctuation;
+ document.getElementById("topBar").innerHTML =
+ `🔥 ${current.toLocaleString()} girls are online now – one of them is waiting for you`;
+},4000);
+</script>
 
 </body>
 </html>
